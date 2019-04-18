@@ -1,0 +1,2 @@
+Se empezó a codificar los puntos intermediarios de códigos.
+Se almacenan las variables y rutinas del programa (en directorios) así como su informacion.

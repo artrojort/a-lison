@@ -1,0 +1,29 @@
+starprog
+
+vars
+endvars
+
+routine
+endroutine
+
+routine int test1 (int a, bool b, char c){
+	vars
+		int numbr = 2;
+		char letter = K;
+	endvars
+
+	return numbr;
+}
+endroutine
+
+routine int test2 (int a, bool b, char c){
+	vars
+	endvars
+}
+
+main{
+	vars
+	endvars
+}
+
+endprog

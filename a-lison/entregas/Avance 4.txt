@@ -1,0 +1,5 @@
+Se implementaron las palabras reservadas y tokens del lenguaje. 
+Se desarrolló la gramatica de los tokens y los diagramas de sintaxis del lenguaje.
+Quedaron pendientes las funciones especiales y el objeto especial del lenguaje que es el Report.
+
+

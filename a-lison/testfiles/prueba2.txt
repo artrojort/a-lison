@@ -1,0 +1,33 @@
+startprog
+
+vars
+	int numbrrr = 2;
+	char letterrr = 'K';
+endvars
+
+
+routine int test1 (int a, bool b, char c){
+	vars
+		int numbr = 2;
+		char letter = 'K';
+	endvars
+
+	return numbr;
+}
+
+routine int test2 (int a, bool b, char c){
+	vars
+	endvars
+
+	return 2;
+}
+
+main{
+	vars
+		double tempvar2;
+		double tempvar3 = 4;
+	endvars
+
+}
+
+endprog

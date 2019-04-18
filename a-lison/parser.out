@@ -1,0 +1,2792 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    REPORT
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> r1 STARTPROG vars r4 routines main ENDPROG
+Rule 2     r1 -> <empty>
+Rule 3     r4 -> <empty>
+Rule 4     vars -> VARS decvars ENDVARS
+Rule 5     decvars -> type r2 dim1array decassign SEMICOLON r3 decvars
+Rule 6     decvars -> empty
+Rule 7     r2 -> ID
+Rule 8     r3 -> <empty>
+Rule 9     dim1array -> L_BRKT V_INT R_BRKT dim2array
+Rule 10    dim1array -> empty
+Rule 11    dim2array -> L_BRKT V_INT R_BRKT
+Rule 12    dim2array -> empty
+Rule 13    decassign -> ASSIGN assignvalue
+Rule 14    decassign -> empty
+Rule 15    assignvalue -> constant
+Rule 16    assignvalue -> assignarray
+Rule 17    assignvalue -> empty
+Rule 18    assignarray -> L_BRKT assignarray2 R_BRKT
+Rule 19    assignarray -> empty
+Rule 20    assignarray2 -> assignarray3
+Rule 21    assignarray2 -> assignarray5
+Rule 22    assignarray3 -> constant assignarray4
+Rule 23    assignarray3 -> empty
+Rule 24    assignarray4 -> COMMA assignarray3
+Rule 25    assignarray4 -> empty
+Rule 26    assignarray5 -> L_BRKT assignarray6 R_BRKT assignarray8
+Rule 27    assignarray6 -> assignarray7
+Rule 28    assignarray6 -> empty
+Rule 29    assignarray7 -> COMMA assignarray6
+Rule 30    assignarray7 -> empty
+Rule 31    assignarray8 -> COMMA assignarray5
+Rule 32    assignarray8 -> empty
+Rule 33    routines -> decroutine routines
+Rule 34    routines -> empty
+Rule 35    decroutine -> ROUTINE dectype ID L_PAREN params R_PAREN L_CURLY vars block R_CURLY
+Rule 36    routinecall -> ID L_PAREN paramcall R_PAREN
+Rule 37    paramcall -> expression paramcall2
+Rule 38    paramcall -> empty
+Rule 39    paramcall2 -> COMMA paramcall
+Rule 40    paramcall2 -> empty
+Rule 41    dectype -> type
+Rule 42    dectype -> empty
+Rule 43    params -> type ID params2
+Rule 44    params -> empty
+Rule 45    params2 -> COMMA type ID params2
+Rule 46    params2 -> empty
+Rule 47    main -> MAIN L_CURLY vars block R_CURLY
+Rule 48    constant -> V_INT
+Rule 49    constant -> V_DOUBLE
+Rule 50    constant -> V_CHAR
+Rule 51    constant -> V_BOOL
+Rule 52    decid -> ID decid2
+Rule 53    decid2 -> L_BRKT expression R_BRKT decid3
+Rule 54    decid2 -> empty
+Rule 55    decid3 -> L_BRKT expression R_BRKT
+Rule 56    decid3 -> empty
+Rule 57    type -> INT
+Rule 58    type -> DOUBLE
+Rule 59    type -> CHAR
+Rule 60    type -> BOOL
+Rule 61    type -> STRING
+Rule 62    block -> loop
+Rule 63    block -> condition
+Rule 64    block -> assignvalue SEMICOLON
+Rule 65    block -> input SEMICOLON
+Rule 66    block -> output SEMICOLON
+Rule 67    block -> return SEMICOLON
+Rule 68    block -> empty
+Rule 69    loop -> LOOP L_PAREN expression R_PAREN
+Rule 70    condition -> IF L_PAREN expression R_PAREN L_CURLY block R_CURLY else
+Rule 71    else -> ELSE L_CURLY block R_CURLY
+Rule 72    else -> empty
+Rule 73    input -> INPUT L_PAREN expression R_PAREN
+Rule 74    output -> OUTPUT L_PAREN expression R_PAREN
+Rule 75    return -> RETURN expression
+Rule 76    expression -> relational addlogic
+Rule 77    addlogic -> AND expression
+Rule 78    addlogic -> OR expression
+Rule 79    addlogic -> empty
+Rule 80    relational -> mathsum addrelational
+Rule 81    addrelational -> GREATER
+Rule 82    addrelational -> LESS
+Rule 83    addrelational -> EQUAL
+Rule 84    addrelational -> GREATEREQUAL
+Rule 85    addrelational -> LESSEQUAL
+Rule 86    addrelational -> NOTEQUAL
+Rule 87    addrelational -> empty
+Rule 88    mathsum -> mathmult addmathsum
+Rule 89    addmathsum -> PLUS
+Rule 90    addmathsum -> MINUS
+Rule 91    addmathsum -> empty
+Rule 92    mathmult -> prefactor addmathmult
+Rule 93    addmathmult -> MULT
+Rule 94    addmathmult -> DIV
+Rule 95    addmathmult -> empty
+Rule 96    prefactor -> negativefactor factor
+Rule 97    negativefactor -> NOT
+Rule 98    negativefactor -> empty
+Rule 99    factor -> decid
+Rule 100   factor -> constant
+Rule 101   factor -> L_PAREN expression R_PAREN
+Rule 102   factor -> routinecall
+Rule 103   empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 77
+ASSIGN               : 13
+BOOL                 : 60
+CHAR                 : 59
+COMMA                : 24 29 31 39 45
+DIV                  : 94
+DOUBLE               : 58
+ELSE                 : 71
+ENDPROG              : 1
+ENDVARS              : 4
+EQUAL                : 83
+GREATER              : 81
+GREATEREQUAL         : 84
+ID                   : 7 35 36 43 45 52
+IF                   : 70
+INPUT                : 73
+INT                  : 57
+LESS                 : 82
+LESSEQUAL            : 85
+LOOP                 : 69
+L_BRKT               : 9 11 18 26 53 55
+L_CURLY              : 35 47 70 71
+L_PAREN              : 35 36 69 70 73 74 101
+MAIN                 : 47
+MINUS                : 90
+MULT                 : 93
+NOT                  : 97
+NOTEQUAL             : 86
+OR                   : 78
+OUTPUT               : 74
+PLUS                 : 89
+REPORT               : 
+RETURN               : 75
+ROUTINE              : 35
+R_BRKT               : 9 11 18 26 53 55
+R_CURLY              : 35 47 70 71
+R_PAREN              : 35 36 69 70 73 74 101
+SEMICOLON            : 5 64 65 66 67
+STARTPROG            : 1
+STRING               : 61
+VARS                 : 4
+V_BOOL               : 51
+V_CHAR               : 50
+V_DOUBLE             : 49
+V_INT                : 9 11 48
+error                : 
+
+Nonterminals, with rules where they appear
+
+addlogic             : 76
+addmathmult          : 92
+addmathsum           : 88
+addrelational        : 80
+assignarray          : 16
+assignarray2         : 18
+assignarray3         : 20 24
+assignarray4         : 22
+assignarray5         : 21 31
+assignarray6         : 26 29
+assignarray7         : 27
+assignarray8         : 26
+assignvalue          : 13 64
+block                : 35 47 70 71
+condition            : 63
+constant             : 15 22 100
+decassign            : 5
+decid                : 99
+decid2               : 52
+decid3               : 53
+decroutine           : 33
+dectype              : 35
+decvars              : 4 5
+dim1array            : 5
+dim2array            : 9
+else                 : 70
+empty                : 6 10 12 14 17 19 23 25 28 30 32 34 38 40 42 44 46 54 56 68 72 79 87 91 95 98
+expression           : 37 53 55 69 70 73 74 75 77 78 101
+factor               : 96
+input                : 65
+loop                 : 62
+main                 : 1
+mathmult             : 88
+mathsum              : 80
+negativefactor       : 96
+output               : 66
+paramcall            : 36 39
+paramcall2           : 37
+params               : 35
+params2              : 43 45
+prefactor            : 92
+program              : 0
+r1                   : 1
+r2                   : 5
+r3                   : 5
+r4                   : 1
+relational           : 76
+return               : 67
+routinecall          : 102
+routines             : 1 33
+type                 : 5 41 43 45
+vars                 : 1 35 47
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . r1 STARTPROG vars r4 routines main ENDPROG
+    (2) r1 -> .
+
+    STARTPROG       reduce using rule 2 (r1 -> .)
+
+    program                        shift and go to state 1
+    r1                             shift and go to state 2
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> r1 . STARTPROG vars r4 routines main ENDPROG
+
+    STARTPROG       shift and go to state 3
+
+
+state 3
+
+    (1) program -> r1 STARTPROG . vars r4 routines main ENDPROG
+    (4) vars -> . VARS decvars ENDVARS
+
+    VARS            shift and go to state 5
+
+    vars                           shift and go to state 4
+
+state 4
+
+    (1) program -> r1 STARTPROG vars . r4 routines main ENDPROG
+    (3) r4 -> .
+
+    ROUTINE         reduce using rule 3 (r4 -> .)
+    MAIN            reduce using rule 3 (r4 -> .)
+
+    r4                             shift and go to state 6
+
+state 5
+
+    (4) vars -> VARS . decvars ENDVARS
+    (5) decvars -> . type r2 dim1array decassign SEMICOLON r3 decvars
+    (6) decvars -> . empty
+    (57) type -> . INT
+    (58) type -> . DOUBLE
+    (59) type -> . CHAR
+    (60) type -> . BOOL
+    (61) type -> . STRING
+    (103) empty -> .
+
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    BOOL            shift and go to state 13
+    STRING          shift and go to state 14
+    ENDVARS         reduce using rule 103 (empty -> .)
+
+    decvars                        shift and go to state 7
+    type                           shift and go to state 8
+    empty                          shift and go to state 9
+
+state 6
+
+    (1) program -> r1 STARTPROG vars r4 . routines main ENDPROG
+    (33) routines -> . decroutine routines
+    (34) routines -> . empty
+    (35) decroutine -> . ROUTINE dectype ID L_PAREN params R_PAREN L_CURLY vars block R_CURLY
+    (103) empty -> .
+
+    ROUTINE         shift and go to state 18
+    MAIN            reduce using rule 103 (empty -> .)
+
+    routines                       shift and go to state 15
+    decroutine                     shift and go to state 16
+    empty                          shift and go to state 17
+
+state 7
+
+    (4) vars -> VARS decvars . ENDVARS
+
+    ENDVARS         shift and go to state 19
+
+
+state 8
+
+    (5) decvars -> type . r2 dim1array decassign SEMICOLON r3 decvars
+    (7) r2 -> . ID
+
+    ID              shift and go to state 21
+
+    r2                             shift and go to state 20
+
+state 9
+
+    (6) decvars -> empty .
+
+    ENDVARS         reduce using rule 6 (decvars -> empty .)
+
+
+state 10
+
+    (57) type -> INT .
+
+    ID              reduce using rule 57 (type -> INT .)
+
+
+state 11
+
+    (58) type -> DOUBLE .
+
+    ID              reduce using rule 58 (type -> DOUBLE .)
+
+
+state 12
+
+    (59) type -> CHAR .
+
+    ID              reduce using rule 59 (type -> CHAR .)
+
+
+state 13
+
+    (60) type -> BOOL .
+
+    ID              reduce using rule 60 (type -> BOOL .)
+
+
+state 14
+
+    (61) type -> STRING .
+
+    ID              reduce using rule 61 (type -> STRING .)
+
+
+state 15
+
+    (1) program -> r1 STARTPROG vars r4 routines . main ENDPROG
+    (47) main -> . MAIN L_CURLY vars block R_CURLY
+
+    MAIN            shift and go to state 23
+
+    main                           shift and go to state 22
+
+state 16
+
+    (33) routines -> decroutine . routines
+    (33) routines -> . decroutine routines
+    (34) routines -> . empty
+    (35) decroutine -> . ROUTINE dectype ID L_PAREN params R_PAREN L_CURLY vars block R_CURLY
+    (103) empty -> .
+
+    ROUTINE         shift and go to state 18
+    MAIN            reduce using rule 103 (empty -> .)
+
+    decroutine                     shift and go to state 16
+    routines                       shift and go to state 24
+    empty                          shift and go to state 17
+
+state 17
+
+    (34) routines -> empty .
+
+    MAIN            reduce using rule 34 (routines -> empty .)
+
+
+state 18
+
+    (35) decroutine -> ROUTINE . dectype ID L_PAREN params R_PAREN L_CURLY vars block R_CURLY
+    (41) dectype -> . type
+    (42) dectype -> . empty
+    (57) type -> . INT
+    (58) type -> . DOUBLE
+    (59) type -> . CHAR
+    (60) type -> . BOOL
+    (61) type -> . STRING
+    (103) empty -> .
+
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    BOOL            shift and go to state 13
+    STRING          shift and go to state 14
+    ID              reduce using rule 103 (empty -> .)
+
+    dectype                        shift and go to state 25
+    type                           shift and go to state 26
+    empty                          shift and go to state 27
+
+state 19
+
+    (4) vars -> VARS decvars ENDVARS .
+
+    ROUTINE         reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    MAIN            reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    LOOP            reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    IF              reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    INPUT           reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    OUTPUT          reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    RETURN          reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    V_INT           reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    V_DOUBLE        reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    V_CHAR          reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    V_BOOL          reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    L_BRKT          reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    R_CURLY         reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+    SEMICOLON       reduce using rule 4 (vars -> VARS decvars ENDVARS .)
+
+
+state 20
+
+    (5) decvars -> type r2 . dim1array decassign SEMICOLON r3 decvars
+    (9) dim1array -> . L_BRKT V_INT R_BRKT dim2array
+    (10) dim1array -> . empty
+    (103) empty -> .
+
+    L_BRKT          shift and go to state 29
+    ASSIGN          reduce using rule 103 (empty -> .)
+    SEMICOLON       reduce using rule 103 (empty -> .)
+
+    dim1array                      shift and go to state 28
+    empty                          shift and go to state 30
+
+state 21
+
+    (7) r2 -> ID .
+
+    L_BRKT          reduce using rule 7 (r2 -> ID .)
+    ASSIGN          reduce using rule 7 (r2 -> ID .)
+    SEMICOLON       reduce using rule 7 (r2 -> ID .)
+
+
+state 22
+
+    (1) program -> r1 STARTPROG vars r4 routines main . ENDPROG
+
+    ENDPROG         shift and go to state 31
+
+
+state 23
+
+    (47) main -> MAIN . L_CURLY vars block R_CURLY
+
+    L_CURLY         shift and go to state 32
+
+
+state 24
+
+    (33) routines -> decroutine routines .
+
+    MAIN            reduce using rule 33 (routines -> decroutine routines .)
+
+
+state 25
+
+    (35) decroutine -> ROUTINE dectype . ID L_PAREN params R_PAREN L_CURLY vars block R_CURLY
+
+    ID              shift and go to state 33
+
+
+state 26
+
+    (41) dectype -> type .
+
+    ID              reduce using rule 41 (dectype -> type .)
+
+
+state 27
+
+    (42) dectype -> empty .
+
+    ID              reduce using rule 42 (dectype -> empty .)
+
+
+state 28
+
+    (5) decvars -> type r2 dim1array . decassign SEMICOLON r3 decvars
+    (13) decassign -> . ASSIGN assignvalue
+    (14) decassign -> . empty
+    (103) empty -> .
+
+    ASSIGN          shift and go to state 35
+    SEMICOLON       reduce using rule 103 (empty -> .)
+
+    decassign                      shift and go to state 34
+    empty                          shift and go to state 36
+
+state 29
+
+    (9) dim1array -> L_BRKT . V_INT R_BRKT dim2array
+
+    V_INT           shift and go to state 37
+
+
+state 30
+
+    (10) dim1array -> empty .
+
+    ASSIGN          reduce using rule 10 (dim1array -> empty .)
+    SEMICOLON       reduce using rule 10 (dim1array -> empty .)
+
+
+state 31
+
+    (1) program -> r1 STARTPROG vars r4 routines main ENDPROG .
+
+    $end            reduce using rule 1 (program -> r1 STARTPROG vars r4 routines main ENDPROG .)
+
+
+state 32
+
+    (47) main -> MAIN L_CURLY . vars block R_CURLY
+    (4) vars -> . VARS decvars ENDVARS
+
+    VARS            shift and go to state 5
+
+    vars                           shift and go to state 38
+
+state 33
+
+    (35) decroutine -> ROUTINE dectype ID . L_PAREN params R_PAREN L_CURLY vars block R_CURLY
+
+    L_PAREN         shift and go to state 39
+
+
+state 34
+
+    (5) decvars -> type r2 dim1array decassign . SEMICOLON r3 decvars
+
+    SEMICOLON       shift and go to state 40
+
+
+state 35
+
+    (13) decassign -> ASSIGN . assignvalue
+    (15) assignvalue -> . constant
+    (16) assignvalue -> . assignarray
+    (17) assignvalue -> . empty
+    (48) constant -> . V_INT
+    (49) constant -> . V_DOUBLE
+    (50) constant -> . V_CHAR
+    (51) constant -> . V_BOOL
+    (18) assignarray -> . L_BRKT assignarray2 R_BRKT
+    (19) assignarray -> . empty
+    (103) empty -> .
+
+    V_INT           shift and go to state 45
+    V_DOUBLE        shift and go to state 46
+    V_CHAR          shift and go to state 47
+    V_BOOL          shift and go to state 48
+    L_BRKT          shift and go to state 49
+    SEMICOLON       reduce using rule 103 (empty -> .)
+
+    assignvalue                    shift and go to state 41
+    constant                       shift and go to state 42
+    assignarray                    shift and go to state 43
+    empty                          shift and go to state 44
+
+state 36
+
+    (14) decassign -> empty .
+
+    SEMICOLON       reduce using rule 14 (decassign -> empty .)
+
+
+state 37
+
+    (9) dim1array -> L_BRKT V_INT . R_BRKT dim2array
+
+    R_BRKT          shift and go to state 50
+
+
+state 38
+
+    (47) main -> MAIN L_CURLY vars . block R_CURLY
+    (62) block -> . loop
+    (63) block -> . condition
+    (64) block -> . assignvalue SEMICOLON
+    (65) block -> . input SEMICOLON
+    (66) block -> . output SEMICOLON
+    (67) block -> . return SEMICOLON
+    (68) block -> . empty
+    (69) loop -> . LOOP L_PAREN expression R_PAREN
+    (70) condition -> . IF L_PAREN expression R_PAREN L_CURLY block R_CURLY else
+    (15) assignvalue -> . constant
+    (16) assignvalue -> . assignarray
+    (17) assignvalue -> . empty
+    (73) input -> . INPUT L_PAREN expression R_PAREN
+    (74) output -> . OUTPUT L_PAREN expression R_PAREN
+    (75) return -> . RETURN expression
+    (103) empty -> .
+    (48) constant -> . V_INT
+    (49) constant -> . V_DOUBLE
+    (50) constant -> . V_CHAR
+    (51) constant -> . V_BOOL
+    (18) assignarray -> . L_BRKT assignarray2 R_BRKT
+    (19) assignarray -> . empty
+
+    LOOP            shift and go to state 59
+    IF              shift and go to state 60
+    INPUT           shift and go to state 61
+    OUTPUT          shift and go to state 62
+    RETURN          shift and go to state 63
+    R_CURLY         reduce using rule 103 (empty -> .)
+    SEMICOLON       reduce using rule 103 (empty -> .)
+    V_INT           shift and go to state 45
+    V_DOUBLE        shift and go to state 46
+    V_CHAR          shift and go to state 47
+    V_BOOL          shift and go to state 48
+    L_BRKT          shift and go to state 49
+
+    block                          shift and go to state 51
+    loop                           shift and go to state 52
+    condition                      shift and go to state 53
+    assignvalue                    shift and go to state 54
+    input                          shift and go to state 55
+    output                         shift and go to state 56
+    return                         shift and go to state 57
+    empty                          shift and go to state 58
+    constant                       shift and go to state 42
+    assignarray                    shift and go to state 43
+
+state 39
+
+    (35) decroutine -> ROUTINE dectype ID L_PAREN . params R_PAREN L_CURLY vars block R_CURLY
+    (43) params -> . type ID params2
+    (44) params -> . empty
+    (57) type -> . INT
+    (58) type -> . DOUBLE
+    (59) type -> . CHAR
+    (60) type -> . BOOL
+    (61) type -> . STRING
+    (103) empty -> .
+
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    BOOL            shift and go to state 13
+    STRING          shift and go to state 14
+    R_PAREN         reduce using rule 103 (empty -> .)
+
+    params                         shift and go to state 64
+    type                           shift and go to state 65
+    empty                          shift and go to state 66
+
+state 40
+
+    (5) decvars -> type r2 dim1array decassign SEMICOLON . r3 decvars
+    (8) r3 -> .
+
+    INT             reduce using rule 8 (r3 -> .)
+    DOUBLE          reduce using rule 8 (r3 -> .)
+    CHAR            reduce using rule 8 (r3 -> .)
+    BOOL            reduce using rule 8 (r3 -> .)
+    STRING          reduce using rule 8 (r3 -> .)
+    ENDVARS         reduce using rule 8 (r3 -> .)
+
+    r3                             shift and go to state 67
+
+state 41
+
+    (13) decassign -> ASSIGN assignvalue .
+
+    SEMICOLON       reduce using rule 13 (decassign -> ASSIGN assignvalue .)
+
+
+state 42
+
+    (15) assignvalue -> constant .
+
+    SEMICOLON       reduce using rule 15 (assignvalue -> constant .)
+
+
+state 43
+
+    (16) assignvalue -> assignarray .
+
+    SEMICOLON       reduce using rule 16 (assignvalue -> assignarray .)
+
+
+state 44
+
+    (17) assignvalue -> empty .
+    (19) assignarray -> empty .
+
+  ! reduce/reduce conflict for SEMICOLON resolved using rule 17 (assignvalue -> empty .)
+    SEMICOLON       reduce using rule 17 (assignvalue -> empty .)
+
+  ! SEMICOLON       [ reduce using rule 19 (assignarray -> empty .) ]
+
+
+state 45
+
+    (48) constant -> V_INT .
+
+    SEMICOLON       reduce using rule 48 (constant -> V_INT .)
+    COMMA           reduce using rule 48 (constant -> V_INT .)
+    R_BRKT          reduce using rule 48 (constant -> V_INT .)
+    MULT            reduce using rule 48 (constant -> V_INT .)
+    DIV             reduce using rule 48 (constant -> V_INT .)
+    PLUS            reduce using rule 48 (constant -> V_INT .)
+    MINUS           reduce using rule 48 (constant -> V_INT .)
+    GREATER         reduce using rule 48 (constant -> V_INT .)
+    LESS            reduce using rule 48 (constant -> V_INT .)
+    EQUAL           reduce using rule 48 (constant -> V_INT .)
+    GREATEREQUAL    reduce using rule 48 (constant -> V_INT .)
+    LESSEQUAL       reduce using rule 48 (constant -> V_INT .)
+    NOTEQUAL        reduce using rule 48 (constant -> V_INT .)
+    AND             reduce using rule 48 (constant -> V_INT .)
+    OR              reduce using rule 48 (constant -> V_INT .)
+    R_PAREN         reduce using rule 48 (constant -> V_INT .)
+
+
+state 46
+
+    (49) constant -> V_DOUBLE .
+
+    SEMICOLON       reduce using rule 49 (constant -> V_DOUBLE .)
+    COMMA           reduce using rule 49 (constant -> V_DOUBLE .)
+    R_BRKT          reduce using rule 49 (constant -> V_DOUBLE .)
+    MULT            reduce using rule 49 (constant -> V_DOUBLE .)
+    DIV             reduce using rule 49 (constant -> V_DOUBLE .)
+    PLUS            reduce using rule 49 (constant -> V_DOUBLE .)
+    MINUS           reduce using rule 49 (constant -> V_DOUBLE .)
+    GREATER         reduce using rule 49 (constant -> V_DOUBLE .)
+    LESS            reduce using rule 49 (constant -> V_DOUBLE .)
+    EQUAL           reduce using rule 49 (constant -> V_DOUBLE .)
+    GREATEREQUAL    reduce using rule 49 (constant -> V_DOUBLE .)
+    LESSEQUAL       reduce using rule 49 (constant -> V_DOUBLE .)
+    NOTEQUAL        reduce using rule 49 (constant -> V_DOUBLE .)
+    AND             reduce using rule 49 (constant -> V_DOUBLE .)
+    OR              reduce using rule 49 (constant -> V_DOUBLE .)
+    R_PAREN         reduce using rule 49 (constant -> V_DOUBLE .)
+
+
+state 47
+
+    (50) constant -> V_CHAR .
+
+    SEMICOLON       reduce using rule 50 (constant -> V_CHAR .)
+    COMMA           reduce using rule 50 (constant -> V_CHAR .)
+    R_BRKT          reduce using rule 50 (constant -> V_CHAR .)
+    MULT            reduce using rule 50 (constant -> V_CHAR .)
+    DIV             reduce using rule 50 (constant -> V_CHAR .)
+    PLUS            reduce using rule 50 (constant -> V_CHAR .)
+    MINUS           reduce using rule 50 (constant -> V_CHAR .)
+    GREATER         reduce using rule 50 (constant -> V_CHAR .)
+    LESS            reduce using rule 50 (constant -> V_CHAR .)
+    EQUAL           reduce using rule 50 (constant -> V_CHAR .)
+    GREATEREQUAL    reduce using rule 50 (constant -> V_CHAR .)
+    LESSEQUAL       reduce using rule 50 (constant -> V_CHAR .)
+    NOTEQUAL        reduce using rule 50 (constant -> V_CHAR .)
+    AND             reduce using rule 50 (constant -> V_CHAR .)
+    OR              reduce using rule 50 (constant -> V_CHAR .)
+    R_PAREN         reduce using rule 50 (constant -> V_CHAR .)
+
+
+state 48
+
+    (51) constant -> V_BOOL .
+
+    SEMICOLON       reduce using rule 51 (constant -> V_BOOL .)
+    COMMA           reduce using rule 51 (constant -> V_BOOL .)
+    R_BRKT          reduce using rule 51 (constant -> V_BOOL .)
+    MULT            reduce using rule 51 (constant -> V_BOOL .)
+    DIV             reduce using rule 51 (constant -> V_BOOL .)
+    PLUS            reduce using rule 51 (constant -> V_BOOL .)
+    MINUS           reduce using rule 51 (constant -> V_BOOL .)
+    GREATER         reduce using rule 51 (constant -> V_BOOL .)
+    LESS            reduce using rule 51 (constant -> V_BOOL .)
+    EQUAL           reduce using rule 51 (constant -> V_BOOL .)
+    GREATEREQUAL    reduce using rule 51 (constant -> V_BOOL .)
+    LESSEQUAL       reduce using rule 51 (constant -> V_BOOL .)
+    NOTEQUAL        reduce using rule 51 (constant -> V_BOOL .)
+    AND             reduce using rule 51 (constant -> V_BOOL .)
+    OR              reduce using rule 51 (constant -> V_BOOL .)
+    R_PAREN         reduce using rule 51 (constant -> V_BOOL .)
+
+
+state 49
+
+    (18) assignarray -> L_BRKT . assignarray2 R_BRKT
+    (20) assignarray2 -> . assignarray3
+    (21) assignarray2 -> . assignarray5
+    (22) assignarray3 -> . constant assignarray4
+    (23) assignarray3 -> . empty
+    (26) assignarray5 -> . L_BRKT assignarray6 R_BRKT assignarray8
+    (48) constant -> . V_INT
+    (49) constant -> . V_DOUBLE
+    (50) constant -> . V_CHAR
+    (51) constant -> . V_BOOL
+    (103) empty -> .
+
+    L_BRKT          shift and go to state 68
+    V_INT           shift and go to state 45
+    V_DOUBLE        shift and go to state 46
+    V_CHAR          shift and go to state 47
+    V_BOOL          shift and go to state 48
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    assignarray2                   shift and go to state 69
+    assignarray3                   shift and go to state 70
+    assignarray5                   shift and go to state 71
+    constant                       shift and go to state 72
+    empty                          shift and go to state 73
+
+state 50
+
+    (9) dim1array -> L_BRKT V_INT R_BRKT . dim2array
+    (11) dim2array -> . L_BRKT V_INT R_BRKT
+    (12) dim2array -> . empty
+    (103) empty -> .
+
+    L_BRKT          shift and go to state 74
+    ASSIGN          reduce using rule 103 (empty -> .)
+    SEMICOLON       reduce using rule 103 (empty -> .)
+
+    dim2array                      shift and go to state 75
+    empty                          shift and go to state 76
+
+state 51
+
+    (47) main -> MAIN L_CURLY vars block . R_CURLY
+
+    R_CURLY         shift and go to state 77
+
+
+state 52
+
+    (62) block -> loop .
+
+    R_CURLY         reduce using rule 62 (block -> loop .)
+
+
+state 53
+
+    (63) block -> condition .
+
+    R_CURLY         reduce using rule 63 (block -> condition .)
+
+
+state 54
+
+    (64) block -> assignvalue . SEMICOLON
+
+    SEMICOLON       shift and go to state 78
+
+
+state 55
+
+    (65) block -> input . SEMICOLON
+
+    SEMICOLON       shift and go to state 79
+
+
+state 56
+
+    (66) block -> output . SEMICOLON
+
+    SEMICOLON       shift and go to state 80
+
+
+state 57
+
+    (67) block -> return . SEMICOLON
+
+    SEMICOLON       shift and go to state 81
+
+
+state 58
+
+    (68) block -> empty .
+    (17) assignvalue -> empty .
+    (19) assignarray -> empty .
+
+  ! reduce/reduce conflict for SEMICOLON resolved using rule 17 (assignvalue -> empty .)
+    R_CURLY         reduce using rule 68 (block -> empty .)
+    SEMICOLON       reduce using rule 17 (assignvalue -> empty .)
+
+  ! SEMICOLON       [ reduce using rule 19 (assignarray -> empty .) ]
+
+
+state 59
+
+    (69) loop -> LOOP . L_PAREN expression R_PAREN
+
+    L_PAREN         shift and go to state 82
+
+
+state 60
+
+    (70) condition -> IF . L_PAREN expression R_PAREN L_CURLY block R_CURLY else
+
+    L_PAREN         shift and go to state 83
+
+
+state 61
+
+    (73) input -> INPUT . L_PAREN expression R_PAREN
+
+    L_PAREN         shift and go to state 84
+
+
+state 62
+
+    (74) output -> OUTPUT . L_PAREN expression R_PAREN
+
+    L_PAREN         shift and go to state 85
+
+
+state 63
+
+    (75) return -> RETURN . expression
+    (76) expression -> . relational addlogic
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+    (103) empty -> .
+
+    NOT             shift and go to state 92
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+
+    expression                     shift and go to state 86
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+    empty                          shift and go to state 93
+
+state 64
+
+    (35) decroutine -> ROUTINE dectype ID L_PAREN params . R_PAREN L_CURLY vars block R_CURLY
+
+    R_PAREN         shift and go to state 94
+
+
+state 65
+
+    (43) params -> type . ID params2
+
+    ID              shift and go to state 95
+
+
+state 66
+
+    (44) params -> empty .
+
+    R_PAREN         reduce using rule 44 (params -> empty .)
+
+
+state 67
+
+    (5) decvars -> type r2 dim1array decassign SEMICOLON r3 . decvars
+    (5) decvars -> . type r2 dim1array decassign SEMICOLON r3 decvars
+    (6) decvars -> . empty
+    (57) type -> . INT
+    (58) type -> . DOUBLE
+    (59) type -> . CHAR
+    (60) type -> . BOOL
+    (61) type -> . STRING
+    (103) empty -> .
+
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    BOOL            shift and go to state 13
+    STRING          shift and go to state 14
+    ENDVARS         reduce using rule 103 (empty -> .)
+
+    type                           shift and go to state 8
+    decvars                        shift and go to state 96
+    empty                          shift and go to state 9
+
+state 68
+
+    (26) assignarray5 -> L_BRKT . assignarray6 R_BRKT assignarray8
+    (27) assignarray6 -> . assignarray7
+    (28) assignarray6 -> . empty
+    (29) assignarray7 -> . COMMA assignarray6
+    (30) assignarray7 -> . empty
+    (103) empty -> .
+
+    COMMA           shift and go to state 100
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    assignarray6                   shift and go to state 97
+    assignarray7                   shift and go to state 98
+    empty                          shift and go to state 99
+
+state 69
+
+    (18) assignarray -> L_BRKT assignarray2 . R_BRKT
+
+    R_BRKT          shift and go to state 101
+
+
+state 70
+
+    (20) assignarray2 -> assignarray3 .
+
+    R_BRKT          reduce using rule 20 (assignarray2 -> assignarray3 .)
+
+
+state 71
+
+    (21) assignarray2 -> assignarray5 .
+
+    R_BRKT          reduce using rule 21 (assignarray2 -> assignarray5 .)
+
+
+state 72
+
+    (22) assignarray3 -> constant . assignarray4
+    (24) assignarray4 -> . COMMA assignarray3
+    (25) assignarray4 -> . empty
+    (103) empty -> .
+
+    COMMA           shift and go to state 103
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    assignarray4                   shift and go to state 102
+    empty                          shift and go to state 104
+
+state 73
+
+    (23) assignarray3 -> empty .
+
+    R_BRKT          reduce using rule 23 (assignarray3 -> empty .)
+
+
+state 74
+
+    (11) dim2array -> L_BRKT . V_INT R_BRKT
+
+    V_INT           shift and go to state 105
+
+
+state 75
+
+    (9) dim1array -> L_BRKT V_INT R_BRKT dim2array .
+
+    ASSIGN          reduce using rule 9 (dim1array -> L_BRKT V_INT R_BRKT dim2array .)
+    SEMICOLON       reduce using rule 9 (dim1array -> L_BRKT V_INT R_BRKT dim2array .)
+
+
+state 76
+
+    (12) dim2array -> empty .
+
+    ASSIGN          reduce using rule 12 (dim2array -> empty .)
+    SEMICOLON       reduce using rule 12 (dim2array -> empty .)
+
+
+state 77
+
+    (47) main -> MAIN L_CURLY vars block R_CURLY .
+
+    ENDPROG         reduce using rule 47 (main -> MAIN L_CURLY vars block R_CURLY .)
+
+
+state 78
+
+    (64) block -> assignvalue SEMICOLON .
+
+    R_CURLY         reduce using rule 64 (block -> assignvalue SEMICOLON .)
+
+
+state 79
+
+    (65) block -> input SEMICOLON .
+
+    R_CURLY         reduce using rule 65 (block -> input SEMICOLON .)
+
+
+state 80
+
+    (66) block -> output SEMICOLON .
+
+    R_CURLY         reduce using rule 66 (block -> output SEMICOLON .)
+
+
+state 81
+
+    (67) block -> return SEMICOLON .
+
+    R_CURLY         reduce using rule 67 (block -> return SEMICOLON .)
+
+
+state 82
+
+    (69) loop -> LOOP L_PAREN . expression R_PAREN
+    (76) expression -> . relational addlogic
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+    (103) empty -> .
+
+    NOT             shift and go to state 92
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+
+    expression                     shift and go to state 106
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+    empty                          shift and go to state 93
+
+state 83
+
+    (70) condition -> IF L_PAREN . expression R_PAREN L_CURLY block R_CURLY else
+    (76) expression -> . relational addlogic
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+    (103) empty -> .
+
+    NOT             shift and go to state 92
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+
+    expression                     shift and go to state 107
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+    empty                          shift and go to state 93
+
+state 84
+
+    (73) input -> INPUT L_PAREN . expression R_PAREN
+    (76) expression -> . relational addlogic
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+    (103) empty -> .
+
+    NOT             shift and go to state 92
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+
+    expression                     shift and go to state 108
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+    empty                          shift and go to state 93
+
+state 85
+
+    (74) output -> OUTPUT L_PAREN . expression R_PAREN
+    (76) expression -> . relational addlogic
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+    (103) empty -> .
+
+    NOT             shift and go to state 92
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+
+    expression                     shift and go to state 109
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+    empty                          shift and go to state 93
+
+state 86
+
+    (75) return -> RETURN expression .
+
+    SEMICOLON       reduce using rule 75 (return -> RETURN expression .)
+
+
+state 87
+
+    (76) expression -> relational . addlogic
+    (77) addlogic -> . AND expression
+    (78) addlogic -> . OR expression
+    (79) addlogic -> . empty
+    (103) empty -> .
+
+    AND             shift and go to state 111
+    OR              shift and go to state 112
+    SEMICOLON       reduce using rule 103 (empty -> .)
+    R_PAREN         reduce using rule 103 (empty -> .)
+    COMMA           reduce using rule 103 (empty -> .)
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    addlogic                       shift and go to state 110
+    empty                          shift and go to state 113
+
+state 88
+
+    (80) relational -> mathsum . addrelational
+    (81) addrelational -> . GREATER
+    (82) addrelational -> . LESS
+    (83) addrelational -> . EQUAL
+    (84) addrelational -> . GREATEREQUAL
+    (85) addrelational -> . LESSEQUAL
+    (86) addrelational -> . NOTEQUAL
+    (87) addrelational -> . empty
+    (103) empty -> .
+
+    GREATER         shift and go to state 115
+    LESS            shift and go to state 116
+    EQUAL           shift and go to state 117
+    GREATEREQUAL    shift and go to state 118
+    LESSEQUAL       shift and go to state 119
+    NOTEQUAL        shift and go to state 120
+    AND             reduce using rule 103 (empty -> .)
+    OR              reduce using rule 103 (empty -> .)
+    SEMICOLON       reduce using rule 103 (empty -> .)
+    R_PAREN         reduce using rule 103 (empty -> .)
+    COMMA           reduce using rule 103 (empty -> .)
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    addrelational                  shift and go to state 114
+    empty                          shift and go to state 121
+
+state 89
+
+    (88) mathsum -> mathmult . addmathsum
+    (89) addmathsum -> . PLUS
+    (90) addmathsum -> . MINUS
+    (91) addmathsum -> . empty
+    (103) empty -> .
+
+    PLUS            shift and go to state 123
+    MINUS           shift and go to state 124
+    GREATER         reduce using rule 103 (empty -> .)
+    LESS            reduce using rule 103 (empty -> .)
+    EQUAL           reduce using rule 103 (empty -> .)
+    GREATEREQUAL    reduce using rule 103 (empty -> .)
+    LESSEQUAL       reduce using rule 103 (empty -> .)
+    NOTEQUAL        reduce using rule 103 (empty -> .)
+    AND             reduce using rule 103 (empty -> .)
+    OR              reduce using rule 103 (empty -> .)
+    SEMICOLON       reduce using rule 103 (empty -> .)
+    R_PAREN         reduce using rule 103 (empty -> .)
+    COMMA           reduce using rule 103 (empty -> .)
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    addmathsum                     shift and go to state 122
+    empty                          shift and go to state 125
+
+state 90
+
+    (92) mathmult -> prefactor . addmathmult
+    (93) addmathmult -> . MULT
+    (94) addmathmult -> . DIV
+    (95) addmathmult -> . empty
+    (103) empty -> .
+
+    MULT            shift and go to state 127
+    DIV             shift and go to state 128
+    PLUS            reduce using rule 103 (empty -> .)
+    MINUS           reduce using rule 103 (empty -> .)
+    GREATER         reduce using rule 103 (empty -> .)
+    LESS            reduce using rule 103 (empty -> .)
+    EQUAL           reduce using rule 103 (empty -> .)
+    GREATEREQUAL    reduce using rule 103 (empty -> .)
+    LESSEQUAL       reduce using rule 103 (empty -> .)
+    NOTEQUAL        reduce using rule 103 (empty -> .)
+    AND             reduce using rule 103 (empty -> .)
+    OR              reduce using rule 103 (empty -> .)
+    SEMICOLON       reduce using rule 103 (empty -> .)
+    R_PAREN         reduce using rule 103 (empty -> .)
+    COMMA           reduce using rule 103 (empty -> .)
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    addmathmult                    shift and go to state 126
+    empty                          shift and go to state 129
+
+state 91
+
+    (96) prefactor -> negativefactor . factor
+    (99) factor -> . decid
+    (100) factor -> . constant
+    (101) factor -> . L_PAREN expression R_PAREN
+    (102) factor -> . routinecall
+    (52) decid -> . ID decid2
+    (48) constant -> . V_INT
+    (49) constant -> . V_DOUBLE
+    (50) constant -> . V_CHAR
+    (51) constant -> . V_BOOL
+    (36) routinecall -> . ID L_PAREN paramcall R_PAREN
+
+    L_PAREN         shift and go to state 133
+    ID              shift and go to state 135
+    V_INT           shift and go to state 45
+    V_DOUBLE        shift and go to state 46
+    V_CHAR          shift and go to state 47
+    V_BOOL          shift and go to state 48
+
+    factor                         shift and go to state 130
+    decid                          shift and go to state 131
+    constant                       shift and go to state 132
+    routinecall                    shift and go to state 134
+
+state 92
+
+    (97) negativefactor -> NOT .
+
+    L_PAREN         reduce using rule 97 (negativefactor -> NOT .)
+    ID              reduce using rule 97 (negativefactor -> NOT .)
+    V_INT           reduce using rule 97 (negativefactor -> NOT .)
+    V_DOUBLE        reduce using rule 97 (negativefactor -> NOT .)
+    V_CHAR          reduce using rule 97 (negativefactor -> NOT .)
+    V_BOOL          reduce using rule 97 (negativefactor -> NOT .)
+
+
+state 93
+
+    (98) negativefactor -> empty .
+
+    L_PAREN         reduce using rule 98 (negativefactor -> empty .)
+    ID              reduce using rule 98 (negativefactor -> empty .)
+    V_INT           reduce using rule 98 (negativefactor -> empty .)
+    V_DOUBLE        reduce using rule 98 (negativefactor -> empty .)
+    V_CHAR          reduce using rule 98 (negativefactor -> empty .)
+    V_BOOL          reduce using rule 98 (negativefactor -> empty .)
+
+
+state 94
+
+    (35) decroutine -> ROUTINE dectype ID L_PAREN params R_PAREN . L_CURLY vars block R_CURLY
+
+    L_CURLY         shift and go to state 136
+
+
+state 95
+
+    (43) params -> type ID . params2
+    (45) params2 -> . COMMA type ID params2
+    (46) params2 -> . empty
+    (103) empty -> .
+
+    COMMA           shift and go to state 138
+    R_PAREN         reduce using rule 103 (empty -> .)
+
+    params2                        shift and go to state 137
+    empty                          shift and go to state 139
+
+state 96
+
+    (5) decvars -> type r2 dim1array decassign SEMICOLON r3 decvars .
+
+    ENDVARS         reduce using rule 5 (decvars -> type r2 dim1array decassign SEMICOLON r3 decvars .)
+
+
+state 97
+
+    (26) assignarray5 -> L_BRKT assignarray6 . R_BRKT assignarray8
+
+    R_BRKT          shift and go to state 140
+
+
+state 98
+
+    (27) assignarray6 -> assignarray7 .
+
+    R_BRKT          reduce using rule 27 (assignarray6 -> assignarray7 .)
+
+
+state 99
+
+    (28) assignarray6 -> empty .
+    (30) assignarray7 -> empty .
+
+  ! reduce/reduce conflict for R_BRKT resolved using rule 28 (assignarray6 -> empty .)
+    R_BRKT          reduce using rule 28 (assignarray6 -> empty .)
+
+  ! R_BRKT          [ reduce using rule 30 (assignarray7 -> empty .) ]
+
+
+state 100
+
+    (29) assignarray7 -> COMMA . assignarray6
+    (27) assignarray6 -> . assignarray7
+    (28) assignarray6 -> . empty
+    (29) assignarray7 -> . COMMA assignarray6
+    (30) assignarray7 -> . empty
+    (103) empty -> .
+
+    COMMA           shift and go to state 100
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    assignarray6                   shift and go to state 141
+    assignarray7                   shift and go to state 98
+    empty                          shift and go to state 99
+
+state 101
+
+    (18) assignarray -> L_BRKT assignarray2 R_BRKT .
+
+    SEMICOLON       reduce using rule 18 (assignarray -> L_BRKT assignarray2 R_BRKT .)
+
+
+state 102
+
+    (22) assignarray3 -> constant assignarray4 .
+
+    R_BRKT          reduce using rule 22 (assignarray3 -> constant assignarray4 .)
+
+
+state 103
+
+    (24) assignarray4 -> COMMA . assignarray3
+    (22) assignarray3 -> . constant assignarray4
+    (23) assignarray3 -> . empty
+    (48) constant -> . V_INT
+    (49) constant -> . V_DOUBLE
+    (50) constant -> . V_CHAR
+    (51) constant -> . V_BOOL
+    (103) empty -> .
+
+    V_INT           shift and go to state 45
+    V_DOUBLE        shift and go to state 46
+    V_CHAR          shift and go to state 47
+    V_BOOL          shift and go to state 48
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    assignarray3                   shift and go to state 142
+    constant                       shift and go to state 72
+    empty                          shift and go to state 73
+
+state 104
+
+    (25) assignarray4 -> empty .
+
+    R_BRKT          reduce using rule 25 (assignarray4 -> empty .)
+
+
+state 105
+
+    (11) dim2array -> L_BRKT V_INT . R_BRKT
+
+    R_BRKT          shift and go to state 143
+
+
+state 106
+
+    (69) loop -> LOOP L_PAREN expression . R_PAREN
+
+    R_PAREN         shift and go to state 144
+
+
+state 107
+
+    (70) condition -> IF L_PAREN expression . R_PAREN L_CURLY block R_CURLY else
+
+    R_PAREN         shift and go to state 145
+
+
+state 108
+
+    (73) input -> INPUT L_PAREN expression . R_PAREN
+
+    R_PAREN         shift and go to state 146
+
+
+state 109
+
+    (74) output -> OUTPUT L_PAREN expression . R_PAREN
+
+    R_PAREN         shift and go to state 147
+
+
+state 110
+
+    (76) expression -> relational addlogic .
+
+    SEMICOLON       reduce using rule 76 (expression -> relational addlogic .)
+    R_PAREN         reduce using rule 76 (expression -> relational addlogic .)
+    COMMA           reduce using rule 76 (expression -> relational addlogic .)
+    R_BRKT          reduce using rule 76 (expression -> relational addlogic .)
+
+
+state 111
+
+    (77) addlogic -> AND . expression
+    (76) expression -> . relational addlogic
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+    (103) empty -> .
+
+    NOT             shift and go to state 92
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+
+    expression                     shift and go to state 148
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+    empty                          shift and go to state 93
+
+state 112
+
+    (78) addlogic -> OR . expression
+    (76) expression -> . relational addlogic
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+    (103) empty -> .
+
+    NOT             shift and go to state 92
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+
+    expression                     shift and go to state 149
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+    empty                          shift and go to state 93
+
+state 113
+
+    (79) addlogic -> empty .
+
+    SEMICOLON       reduce using rule 79 (addlogic -> empty .)
+    R_PAREN         reduce using rule 79 (addlogic -> empty .)
+    COMMA           reduce using rule 79 (addlogic -> empty .)
+    R_BRKT          reduce using rule 79 (addlogic -> empty .)
+
+
+state 114
+
+    (80) relational -> mathsum addrelational .
+
+    AND             reduce using rule 80 (relational -> mathsum addrelational .)
+    OR              reduce using rule 80 (relational -> mathsum addrelational .)
+    SEMICOLON       reduce using rule 80 (relational -> mathsum addrelational .)
+    R_PAREN         reduce using rule 80 (relational -> mathsum addrelational .)
+    COMMA           reduce using rule 80 (relational -> mathsum addrelational .)
+    R_BRKT          reduce using rule 80 (relational -> mathsum addrelational .)
+
+
+state 115
+
+    (81) addrelational -> GREATER .
+
+    AND             reduce using rule 81 (addrelational -> GREATER .)
+    OR              reduce using rule 81 (addrelational -> GREATER .)
+    SEMICOLON       reduce using rule 81 (addrelational -> GREATER .)
+    R_PAREN         reduce using rule 81 (addrelational -> GREATER .)
+    COMMA           reduce using rule 81 (addrelational -> GREATER .)
+    R_BRKT          reduce using rule 81 (addrelational -> GREATER .)
+
+
+state 116
+
+    (82) addrelational -> LESS .
+
+    AND             reduce using rule 82 (addrelational -> LESS .)
+    OR              reduce using rule 82 (addrelational -> LESS .)
+    SEMICOLON       reduce using rule 82 (addrelational -> LESS .)
+    R_PAREN         reduce using rule 82 (addrelational -> LESS .)
+    COMMA           reduce using rule 82 (addrelational -> LESS .)
+    R_BRKT          reduce using rule 82 (addrelational -> LESS .)
+
+
+state 117
+
+    (83) addrelational -> EQUAL .
+
+    AND             reduce using rule 83 (addrelational -> EQUAL .)
+    OR              reduce using rule 83 (addrelational -> EQUAL .)
+    SEMICOLON       reduce using rule 83 (addrelational -> EQUAL .)
+    R_PAREN         reduce using rule 83 (addrelational -> EQUAL .)
+    COMMA           reduce using rule 83 (addrelational -> EQUAL .)
+    R_BRKT          reduce using rule 83 (addrelational -> EQUAL .)
+
+
+state 118
+
+    (84) addrelational -> GREATEREQUAL .
+
+    AND             reduce using rule 84 (addrelational -> GREATEREQUAL .)
+    OR              reduce using rule 84 (addrelational -> GREATEREQUAL .)
+    SEMICOLON       reduce using rule 84 (addrelational -> GREATEREQUAL .)
+    R_PAREN         reduce using rule 84 (addrelational -> GREATEREQUAL .)
+    COMMA           reduce using rule 84 (addrelational -> GREATEREQUAL .)
+    R_BRKT          reduce using rule 84 (addrelational -> GREATEREQUAL .)
+
+
+state 119
+
+    (85) addrelational -> LESSEQUAL .
+
+    AND             reduce using rule 85 (addrelational -> LESSEQUAL .)
+    OR              reduce using rule 85 (addrelational -> LESSEQUAL .)
+    SEMICOLON       reduce using rule 85 (addrelational -> LESSEQUAL .)
+    R_PAREN         reduce using rule 85 (addrelational -> LESSEQUAL .)
+    COMMA           reduce using rule 85 (addrelational -> LESSEQUAL .)
+    R_BRKT          reduce using rule 85 (addrelational -> LESSEQUAL .)
+
+
+state 120
+
+    (86) addrelational -> NOTEQUAL .
+
+    AND             reduce using rule 86 (addrelational -> NOTEQUAL .)
+    OR              reduce using rule 86 (addrelational -> NOTEQUAL .)
+    SEMICOLON       reduce using rule 86 (addrelational -> NOTEQUAL .)
+    R_PAREN         reduce using rule 86 (addrelational -> NOTEQUAL .)
+    COMMA           reduce using rule 86 (addrelational -> NOTEQUAL .)
+    R_BRKT          reduce using rule 86 (addrelational -> NOTEQUAL .)
+
+
+state 121
+
+    (87) addrelational -> empty .
+
+    AND             reduce using rule 87 (addrelational -> empty .)
+    OR              reduce using rule 87 (addrelational -> empty .)
+    SEMICOLON       reduce using rule 87 (addrelational -> empty .)
+    R_PAREN         reduce using rule 87 (addrelational -> empty .)
+    COMMA           reduce using rule 87 (addrelational -> empty .)
+    R_BRKT          reduce using rule 87 (addrelational -> empty .)
+
+
+state 122
+
+    (88) mathsum -> mathmult addmathsum .
+
+    GREATER         reduce using rule 88 (mathsum -> mathmult addmathsum .)
+    LESS            reduce using rule 88 (mathsum -> mathmult addmathsum .)
+    EQUAL           reduce using rule 88 (mathsum -> mathmult addmathsum .)
+    GREATEREQUAL    reduce using rule 88 (mathsum -> mathmult addmathsum .)
+    LESSEQUAL       reduce using rule 88 (mathsum -> mathmult addmathsum .)
+    NOTEQUAL        reduce using rule 88 (mathsum -> mathmult addmathsum .)
+    AND             reduce using rule 88 (mathsum -> mathmult addmathsum .)
+    OR              reduce using rule 88 (mathsum -> mathmult addmathsum .)
+    SEMICOLON       reduce using rule 88 (mathsum -> mathmult addmathsum .)
+    R_PAREN         reduce using rule 88 (mathsum -> mathmult addmathsum .)
+    COMMA           reduce using rule 88 (mathsum -> mathmult addmathsum .)
+    R_BRKT          reduce using rule 88 (mathsum -> mathmult addmathsum .)
+
+
+state 123
+
+    (89) addmathsum -> PLUS .
+
+    GREATER         reduce using rule 89 (addmathsum -> PLUS .)
+    LESS            reduce using rule 89 (addmathsum -> PLUS .)
+    EQUAL           reduce using rule 89 (addmathsum -> PLUS .)
+    GREATEREQUAL    reduce using rule 89 (addmathsum -> PLUS .)
+    LESSEQUAL       reduce using rule 89 (addmathsum -> PLUS .)
+    NOTEQUAL        reduce using rule 89 (addmathsum -> PLUS .)
+    AND             reduce using rule 89 (addmathsum -> PLUS .)
+    OR              reduce using rule 89 (addmathsum -> PLUS .)
+    SEMICOLON       reduce using rule 89 (addmathsum -> PLUS .)
+    R_PAREN         reduce using rule 89 (addmathsum -> PLUS .)
+    COMMA           reduce using rule 89 (addmathsum -> PLUS .)
+    R_BRKT          reduce using rule 89 (addmathsum -> PLUS .)
+
+
+state 124
+
+    (90) addmathsum -> MINUS .
+
+    GREATER         reduce using rule 90 (addmathsum -> MINUS .)
+    LESS            reduce using rule 90 (addmathsum -> MINUS .)
+    EQUAL           reduce using rule 90 (addmathsum -> MINUS .)
+    GREATEREQUAL    reduce using rule 90 (addmathsum -> MINUS .)
+    LESSEQUAL       reduce using rule 90 (addmathsum -> MINUS .)
+    NOTEQUAL        reduce using rule 90 (addmathsum -> MINUS .)
+    AND             reduce using rule 90 (addmathsum -> MINUS .)
+    OR              reduce using rule 90 (addmathsum -> MINUS .)
+    SEMICOLON       reduce using rule 90 (addmathsum -> MINUS .)
+    R_PAREN         reduce using rule 90 (addmathsum -> MINUS .)
+    COMMA           reduce using rule 90 (addmathsum -> MINUS .)
+    R_BRKT          reduce using rule 90 (addmathsum -> MINUS .)
+
+
+state 125
+
+    (91) addmathsum -> empty .
+
+    GREATER         reduce using rule 91 (addmathsum -> empty .)
+    LESS            reduce using rule 91 (addmathsum -> empty .)
+    EQUAL           reduce using rule 91 (addmathsum -> empty .)
+    GREATEREQUAL    reduce using rule 91 (addmathsum -> empty .)
+    LESSEQUAL       reduce using rule 91 (addmathsum -> empty .)
+    NOTEQUAL        reduce using rule 91 (addmathsum -> empty .)
+    AND             reduce using rule 91 (addmathsum -> empty .)
+    OR              reduce using rule 91 (addmathsum -> empty .)
+    SEMICOLON       reduce using rule 91 (addmathsum -> empty .)
+    R_PAREN         reduce using rule 91 (addmathsum -> empty .)
+    COMMA           reduce using rule 91 (addmathsum -> empty .)
+    R_BRKT          reduce using rule 91 (addmathsum -> empty .)
+
+
+state 126
+
+    (92) mathmult -> prefactor addmathmult .
+
+    PLUS            reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    MINUS           reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    GREATER         reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    LESS            reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    EQUAL           reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    GREATEREQUAL    reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    LESSEQUAL       reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    NOTEQUAL        reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    AND             reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    OR              reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    SEMICOLON       reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    R_PAREN         reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    COMMA           reduce using rule 92 (mathmult -> prefactor addmathmult .)
+    R_BRKT          reduce using rule 92 (mathmult -> prefactor addmathmult .)
+
+
+state 127
+
+    (93) addmathmult -> MULT .
+
+    PLUS            reduce using rule 93 (addmathmult -> MULT .)
+    MINUS           reduce using rule 93 (addmathmult -> MULT .)
+    GREATER         reduce using rule 93 (addmathmult -> MULT .)
+    LESS            reduce using rule 93 (addmathmult -> MULT .)
+    EQUAL           reduce using rule 93 (addmathmult -> MULT .)
+    GREATEREQUAL    reduce using rule 93 (addmathmult -> MULT .)
+    LESSEQUAL       reduce using rule 93 (addmathmult -> MULT .)
+    NOTEQUAL        reduce using rule 93 (addmathmult -> MULT .)
+    AND             reduce using rule 93 (addmathmult -> MULT .)
+    OR              reduce using rule 93 (addmathmult -> MULT .)
+    SEMICOLON       reduce using rule 93 (addmathmult -> MULT .)
+    R_PAREN         reduce using rule 93 (addmathmult -> MULT .)
+    COMMA           reduce using rule 93 (addmathmult -> MULT .)
+    R_BRKT          reduce using rule 93 (addmathmult -> MULT .)
+
+
+state 128
+
+    (94) addmathmult -> DIV .
+
+    PLUS            reduce using rule 94 (addmathmult -> DIV .)
+    MINUS           reduce using rule 94 (addmathmult -> DIV .)
+    GREATER         reduce using rule 94 (addmathmult -> DIV .)
+    LESS            reduce using rule 94 (addmathmult -> DIV .)
+    EQUAL           reduce using rule 94 (addmathmult -> DIV .)
+    GREATEREQUAL    reduce using rule 94 (addmathmult -> DIV .)
+    LESSEQUAL       reduce using rule 94 (addmathmult -> DIV .)
+    NOTEQUAL        reduce using rule 94 (addmathmult -> DIV .)
+    AND             reduce using rule 94 (addmathmult -> DIV .)
+    OR              reduce using rule 94 (addmathmult -> DIV .)
+    SEMICOLON       reduce using rule 94 (addmathmult -> DIV .)
+    R_PAREN         reduce using rule 94 (addmathmult -> DIV .)
+    COMMA           reduce using rule 94 (addmathmult -> DIV .)
+    R_BRKT          reduce using rule 94 (addmathmult -> DIV .)
+
+
+state 129
+
+    (95) addmathmult -> empty .
+
+    PLUS            reduce using rule 95 (addmathmult -> empty .)
+    MINUS           reduce using rule 95 (addmathmult -> empty .)
+    GREATER         reduce using rule 95 (addmathmult -> empty .)
+    LESS            reduce using rule 95 (addmathmult -> empty .)
+    EQUAL           reduce using rule 95 (addmathmult -> empty .)
+    GREATEREQUAL    reduce using rule 95 (addmathmult -> empty .)
+    LESSEQUAL       reduce using rule 95 (addmathmult -> empty .)
+    NOTEQUAL        reduce using rule 95 (addmathmult -> empty .)
+    AND             reduce using rule 95 (addmathmult -> empty .)
+    OR              reduce using rule 95 (addmathmult -> empty .)
+    SEMICOLON       reduce using rule 95 (addmathmult -> empty .)
+    R_PAREN         reduce using rule 95 (addmathmult -> empty .)
+    COMMA           reduce using rule 95 (addmathmult -> empty .)
+    R_BRKT          reduce using rule 95 (addmathmult -> empty .)
+
+
+state 130
+
+    (96) prefactor -> negativefactor factor .
+
+    MULT            reduce using rule 96 (prefactor -> negativefactor factor .)
+    DIV             reduce using rule 96 (prefactor -> negativefactor factor .)
+    PLUS            reduce using rule 96 (prefactor -> negativefactor factor .)
+    MINUS           reduce using rule 96 (prefactor -> negativefactor factor .)
+    GREATER         reduce using rule 96 (prefactor -> negativefactor factor .)
+    LESS            reduce using rule 96 (prefactor -> negativefactor factor .)
+    EQUAL           reduce using rule 96 (prefactor -> negativefactor factor .)
+    GREATEREQUAL    reduce using rule 96 (prefactor -> negativefactor factor .)
+    LESSEQUAL       reduce using rule 96 (prefactor -> negativefactor factor .)
+    NOTEQUAL        reduce using rule 96 (prefactor -> negativefactor factor .)
+    AND             reduce using rule 96 (prefactor -> negativefactor factor .)
+    OR              reduce using rule 96 (prefactor -> negativefactor factor .)
+    SEMICOLON       reduce using rule 96 (prefactor -> negativefactor factor .)
+    R_PAREN         reduce using rule 96 (prefactor -> negativefactor factor .)
+    COMMA           reduce using rule 96 (prefactor -> negativefactor factor .)
+    R_BRKT          reduce using rule 96 (prefactor -> negativefactor factor .)
+
+
+state 131
+
+    (99) factor -> decid .
+
+    MULT            reduce using rule 99 (factor -> decid .)
+    DIV             reduce using rule 99 (factor -> decid .)
+    PLUS            reduce using rule 99 (factor -> decid .)
+    MINUS           reduce using rule 99 (factor -> decid .)
+    GREATER         reduce using rule 99 (factor -> decid .)
+    LESS            reduce using rule 99 (factor -> decid .)
+    EQUAL           reduce using rule 99 (factor -> decid .)
+    GREATEREQUAL    reduce using rule 99 (factor -> decid .)
+    LESSEQUAL       reduce using rule 99 (factor -> decid .)
+    NOTEQUAL        reduce using rule 99 (factor -> decid .)
+    AND             reduce using rule 99 (factor -> decid .)
+    OR              reduce using rule 99 (factor -> decid .)
+    SEMICOLON       reduce using rule 99 (factor -> decid .)
+    R_PAREN         reduce using rule 99 (factor -> decid .)
+    COMMA           reduce using rule 99 (factor -> decid .)
+    R_BRKT          reduce using rule 99 (factor -> decid .)
+
+
+state 132
+
+    (100) factor -> constant .
+
+    MULT            reduce using rule 100 (factor -> constant .)
+    DIV             reduce using rule 100 (factor -> constant .)
+    PLUS            reduce using rule 100 (factor -> constant .)
+    MINUS           reduce using rule 100 (factor -> constant .)
+    GREATER         reduce using rule 100 (factor -> constant .)
+    LESS            reduce using rule 100 (factor -> constant .)
+    EQUAL           reduce using rule 100 (factor -> constant .)
+    GREATEREQUAL    reduce using rule 100 (factor -> constant .)
+    LESSEQUAL       reduce using rule 100 (factor -> constant .)
+    NOTEQUAL        reduce using rule 100 (factor -> constant .)
+    AND             reduce using rule 100 (factor -> constant .)
+    OR              reduce using rule 100 (factor -> constant .)
+    SEMICOLON       reduce using rule 100 (factor -> constant .)
+    R_PAREN         reduce using rule 100 (factor -> constant .)
+    COMMA           reduce using rule 100 (factor -> constant .)
+    R_BRKT          reduce using rule 100 (factor -> constant .)
+
+
+state 133
+
+    (101) factor -> L_PAREN . expression R_PAREN
+    (76) expression -> . relational addlogic
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+    (103) empty -> .
+
+    NOT             shift and go to state 92
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+
+    expression                     shift and go to state 150
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+    empty                          shift and go to state 93
+
+state 134
+
+    (102) factor -> routinecall .
+
+    MULT            reduce using rule 102 (factor -> routinecall .)
+    DIV             reduce using rule 102 (factor -> routinecall .)
+    PLUS            reduce using rule 102 (factor -> routinecall .)
+    MINUS           reduce using rule 102 (factor -> routinecall .)
+    GREATER         reduce using rule 102 (factor -> routinecall .)
+    LESS            reduce using rule 102 (factor -> routinecall .)
+    EQUAL           reduce using rule 102 (factor -> routinecall .)
+    GREATEREQUAL    reduce using rule 102 (factor -> routinecall .)
+    LESSEQUAL       reduce using rule 102 (factor -> routinecall .)
+    NOTEQUAL        reduce using rule 102 (factor -> routinecall .)
+    AND             reduce using rule 102 (factor -> routinecall .)
+    OR              reduce using rule 102 (factor -> routinecall .)
+    SEMICOLON       reduce using rule 102 (factor -> routinecall .)
+    R_PAREN         reduce using rule 102 (factor -> routinecall .)
+    COMMA           reduce using rule 102 (factor -> routinecall .)
+    R_BRKT          reduce using rule 102 (factor -> routinecall .)
+
+
+state 135
+
+    (52) decid -> ID . decid2
+    (36) routinecall -> ID . L_PAREN paramcall R_PAREN
+    (53) decid2 -> . L_BRKT expression R_BRKT decid3
+    (54) decid2 -> . empty
+    (103) empty -> .
+
+    L_PAREN         shift and go to state 152
+    L_BRKT          shift and go to state 153
+    MULT            reduce using rule 103 (empty -> .)
+    DIV             reduce using rule 103 (empty -> .)
+    PLUS            reduce using rule 103 (empty -> .)
+    MINUS           reduce using rule 103 (empty -> .)
+    GREATER         reduce using rule 103 (empty -> .)
+    LESS            reduce using rule 103 (empty -> .)
+    EQUAL           reduce using rule 103 (empty -> .)
+    GREATEREQUAL    reduce using rule 103 (empty -> .)
+    LESSEQUAL       reduce using rule 103 (empty -> .)
+    NOTEQUAL        reduce using rule 103 (empty -> .)
+    AND             reduce using rule 103 (empty -> .)
+    OR              reduce using rule 103 (empty -> .)
+    SEMICOLON       reduce using rule 103 (empty -> .)
+    R_PAREN         reduce using rule 103 (empty -> .)
+    COMMA           reduce using rule 103 (empty -> .)
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    decid2                         shift and go to state 151
+    empty                          shift and go to state 154
+
+state 136
+
+    (35) decroutine -> ROUTINE dectype ID L_PAREN params R_PAREN L_CURLY . vars block R_CURLY
+    (4) vars -> . VARS decvars ENDVARS
+
+    VARS            shift and go to state 5
+
+    vars                           shift and go to state 155
+
+state 137
+
+    (43) params -> type ID params2 .
+
+    R_PAREN         reduce using rule 43 (params -> type ID params2 .)
+
+
+state 138
+
+    (45) params2 -> COMMA . type ID params2
+    (57) type -> . INT
+    (58) type -> . DOUBLE
+    (59) type -> . CHAR
+    (60) type -> . BOOL
+    (61) type -> . STRING
+
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    BOOL            shift and go to state 13
+    STRING          shift and go to state 14
+
+    type                           shift and go to state 156
+
+state 139
+
+    (46) params2 -> empty .
+
+    R_PAREN         reduce using rule 46 (params2 -> empty .)
+
+
+state 140
+
+    (26) assignarray5 -> L_BRKT assignarray6 R_BRKT . assignarray8
+    (31) assignarray8 -> . COMMA assignarray5
+    (32) assignarray8 -> . empty
+    (103) empty -> .
+
+    COMMA           shift and go to state 158
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    assignarray8                   shift and go to state 157
+    empty                          shift and go to state 159
+
+state 141
+
+    (29) assignarray7 -> COMMA assignarray6 .
+
+    R_BRKT          reduce using rule 29 (assignarray7 -> COMMA assignarray6 .)
+
+
+state 142
+
+    (24) assignarray4 -> COMMA assignarray3 .
+
+    R_BRKT          reduce using rule 24 (assignarray4 -> COMMA assignarray3 .)
+
+
+state 143
+
+    (11) dim2array -> L_BRKT V_INT R_BRKT .
+
+    ASSIGN          reduce using rule 11 (dim2array -> L_BRKT V_INT R_BRKT .)
+    SEMICOLON       reduce using rule 11 (dim2array -> L_BRKT V_INT R_BRKT .)
+
+
+state 144
+
+    (69) loop -> LOOP L_PAREN expression R_PAREN .
+
+    R_CURLY         reduce using rule 69 (loop -> LOOP L_PAREN expression R_PAREN .)
+
+
+state 145
+
+    (70) condition -> IF L_PAREN expression R_PAREN . L_CURLY block R_CURLY else
+
+    L_CURLY         shift and go to state 160
+
+
+state 146
+
+    (73) input -> INPUT L_PAREN expression R_PAREN .
+
+    SEMICOLON       reduce using rule 73 (input -> INPUT L_PAREN expression R_PAREN .)
+
+
+state 147
+
+    (74) output -> OUTPUT L_PAREN expression R_PAREN .
+
+    SEMICOLON       reduce using rule 74 (output -> OUTPUT L_PAREN expression R_PAREN .)
+
+
+state 148
+
+    (77) addlogic -> AND expression .
+
+    SEMICOLON       reduce using rule 77 (addlogic -> AND expression .)
+    R_PAREN         reduce using rule 77 (addlogic -> AND expression .)
+    COMMA           reduce using rule 77 (addlogic -> AND expression .)
+    R_BRKT          reduce using rule 77 (addlogic -> AND expression .)
+
+
+state 149
+
+    (78) addlogic -> OR expression .
+
+    SEMICOLON       reduce using rule 78 (addlogic -> OR expression .)
+    R_PAREN         reduce using rule 78 (addlogic -> OR expression .)
+    COMMA           reduce using rule 78 (addlogic -> OR expression .)
+    R_BRKT          reduce using rule 78 (addlogic -> OR expression .)
+
+
+state 150
+
+    (101) factor -> L_PAREN expression . R_PAREN
+
+    R_PAREN         shift and go to state 161
+
+
+state 151
+
+    (52) decid -> ID decid2 .
+
+    MULT            reduce using rule 52 (decid -> ID decid2 .)
+    DIV             reduce using rule 52 (decid -> ID decid2 .)
+    PLUS            reduce using rule 52 (decid -> ID decid2 .)
+    MINUS           reduce using rule 52 (decid -> ID decid2 .)
+    GREATER         reduce using rule 52 (decid -> ID decid2 .)
+    LESS            reduce using rule 52 (decid -> ID decid2 .)
+    EQUAL           reduce using rule 52 (decid -> ID decid2 .)
+    GREATEREQUAL    reduce using rule 52 (decid -> ID decid2 .)
+    LESSEQUAL       reduce using rule 52 (decid -> ID decid2 .)
+    NOTEQUAL        reduce using rule 52 (decid -> ID decid2 .)
+    AND             reduce using rule 52 (decid -> ID decid2 .)
+    OR              reduce using rule 52 (decid -> ID decid2 .)
+    SEMICOLON       reduce using rule 52 (decid -> ID decid2 .)
+    R_PAREN         reduce using rule 52 (decid -> ID decid2 .)
+    COMMA           reduce using rule 52 (decid -> ID decid2 .)
+    R_BRKT          reduce using rule 52 (decid -> ID decid2 .)
+
+
+state 152
+
+    (36) routinecall -> ID L_PAREN . paramcall R_PAREN
+    (37) paramcall -> . expression paramcall2
+    (38) paramcall -> . empty
+    (76) expression -> . relational addlogic
+    (103) empty -> .
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+
+    R_PAREN         reduce using rule 103 (empty -> .)
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+    NOT             shift and go to state 92
+
+    paramcall                      shift and go to state 162
+    expression                     shift and go to state 163
+    empty                          shift and go to state 164
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+
+state 153
+
+    (53) decid2 -> L_BRKT . expression R_BRKT decid3
+    (76) expression -> . relational addlogic
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+    (103) empty -> .
+
+    NOT             shift and go to state 92
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+
+    expression                     shift and go to state 165
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+    empty                          shift and go to state 93
+
+state 154
+
+    (54) decid2 -> empty .
+
+    MULT            reduce using rule 54 (decid2 -> empty .)
+    DIV             reduce using rule 54 (decid2 -> empty .)
+    PLUS            reduce using rule 54 (decid2 -> empty .)
+    MINUS           reduce using rule 54 (decid2 -> empty .)
+    GREATER         reduce using rule 54 (decid2 -> empty .)
+    LESS            reduce using rule 54 (decid2 -> empty .)
+    EQUAL           reduce using rule 54 (decid2 -> empty .)
+    GREATEREQUAL    reduce using rule 54 (decid2 -> empty .)
+    LESSEQUAL       reduce using rule 54 (decid2 -> empty .)
+    NOTEQUAL        reduce using rule 54 (decid2 -> empty .)
+    AND             reduce using rule 54 (decid2 -> empty .)
+    OR              reduce using rule 54 (decid2 -> empty .)
+    SEMICOLON       reduce using rule 54 (decid2 -> empty .)
+    R_PAREN         reduce using rule 54 (decid2 -> empty .)
+    COMMA           reduce using rule 54 (decid2 -> empty .)
+    R_BRKT          reduce using rule 54 (decid2 -> empty .)
+
+
+state 155
+
+    (35) decroutine -> ROUTINE dectype ID L_PAREN params R_PAREN L_CURLY vars . block R_CURLY
+    (62) block -> . loop
+    (63) block -> . condition
+    (64) block -> . assignvalue SEMICOLON
+    (65) block -> . input SEMICOLON
+    (66) block -> . output SEMICOLON
+    (67) block -> . return SEMICOLON
+    (68) block -> . empty
+    (69) loop -> . LOOP L_PAREN expression R_PAREN
+    (70) condition -> . IF L_PAREN expression R_PAREN L_CURLY block R_CURLY else
+    (15) assignvalue -> . constant
+    (16) assignvalue -> . assignarray
+    (17) assignvalue -> . empty
+    (73) input -> . INPUT L_PAREN expression R_PAREN
+    (74) output -> . OUTPUT L_PAREN expression R_PAREN
+    (75) return -> . RETURN expression
+    (103) empty -> .
+    (48) constant -> . V_INT
+    (49) constant -> . V_DOUBLE
+    (50) constant -> . V_CHAR
+    (51) constant -> . V_BOOL
+    (18) assignarray -> . L_BRKT assignarray2 R_BRKT
+    (19) assignarray -> . empty
+
+    LOOP            shift and go to state 59
+    IF              shift and go to state 60
+    INPUT           shift and go to state 61
+    OUTPUT          shift and go to state 62
+    RETURN          shift and go to state 63
+    R_CURLY         reduce using rule 103 (empty -> .)
+    SEMICOLON       reduce using rule 103 (empty -> .)
+    V_INT           shift and go to state 45
+    V_DOUBLE        shift and go to state 46
+    V_CHAR          shift and go to state 47
+    V_BOOL          shift and go to state 48
+    L_BRKT          shift and go to state 49
+
+    block                          shift and go to state 166
+    loop                           shift and go to state 52
+    condition                      shift and go to state 53
+    assignvalue                    shift and go to state 54
+    input                          shift and go to state 55
+    output                         shift and go to state 56
+    return                         shift and go to state 57
+    empty                          shift and go to state 58
+    constant                       shift and go to state 42
+    assignarray                    shift and go to state 43
+
+state 156
+
+    (45) params2 -> COMMA type . ID params2
+
+    ID              shift and go to state 167
+
+
+state 157
+
+    (26) assignarray5 -> L_BRKT assignarray6 R_BRKT assignarray8 .
+
+    R_BRKT          reduce using rule 26 (assignarray5 -> L_BRKT assignarray6 R_BRKT assignarray8 .)
+
+
+state 158
+
+    (31) assignarray8 -> COMMA . assignarray5
+    (26) assignarray5 -> . L_BRKT assignarray6 R_BRKT assignarray8
+
+    L_BRKT          shift and go to state 68
+
+    assignarray5                   shift and go to state 168
+
+state 159
+
+    (32) assignarray8 -> empty .
+
+    R_BRKT          reduce using rule 32 (assignarray8 -> empty .)
+
+
+state 160
+
+    (70) condition -> IF L_PAREN expression R_PAREN L_CURLY . block R_CURLY else
+    (62) block -> . loop
+    (63) block -> . condition
+    (64) block -> . assignvalue SEMICOLON
+    (65) block -> . input SEMICOLON
+    (66) block -> . output SEMICOLON
+    (67) block -> . return SEMICOLON
+    (68) block -> . empty
+    (69) loop -> . LOOP L_PAREN expression R_PAREN
+    (70) condition -> . IF L_PAREN expression R_PAREN L_CURLY block R_CURLY else
+    (15) assignvalue -> . constant
+    (16) assignvalue -> . assignarray
+    (17) assignvalue -> . empty
+    (73) input -> . INPUT L_PAREN expression R_PAREN
+    (74) output -> . OUTPUT L_PAREN expression R_PAREN
+    (75) return -> . RETURN expression
+    (103) empty -> .
+    (48) constant -> . V_INT
+    (49) constant -> . V_DOUBLE
+    (50) constant -> . V_CHAR
+    (51) constant -> . V_BOOL
+    (18) assignarray -> . L_BRKT assignarray2 R_BRKT
+    (19) assignarray -> . empty
+
+    LOOP            shift and go to state 59
+    IF              shift and go to state 60
+    INPUT           shift and go to state 61
+    OUTPUT          shift and go to state 62
+    RETURN          shift and go to state 63
+    R_CURLY         reduce using rule 103 (empty -> .)
+    SEMICOLON       reduce using rule 103 (empty -> .)
+    V_INT           shift and go to state 45
+    V_DOUBLE        shift and go to state 46
+    V_CHAR          shift and go to state 47
+    V_BOOL          shift and go to state 48
+    L_BRKT          shift and go to state 49
+
+    block                          shift and go to state 169
+    loop                           shift and go to state 52
+    condition                      shift and go to state 53
+    assignvalue                    shift and go to state 54
+    input                          shift and go to state 55
+    output                         shift and go to state 56
+    return                         shift and go to state 57
+    empty                          shift and go to state 58
+    constant                       shift and go to state 42
+    assignarray                    shift and go to state 43
+
+state 161
+
+    (101) factor -> L_PAREN expression R_PAREN .
+
+    MULT            reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    DIV             reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    PLUS            reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    MINUS           reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    GREATER         reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    LESS            reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    EQUAL           reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    GREATEREQUAL    reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    LESSEQUAL       reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    NOTEQUAL        reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    AND             reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    OR              reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    SEMICOLON       reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    R_PAREN         reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    COMMA           reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+    R_BRKT          reduce using rule 101 (factor -> L_PAREN expression R_PAREN .)
+
+
+state 162
+
+    (36) routinecall -> ID L_PAREN paramcall . R_PAREN
+
+    R_PAREN         shift and go to state 170
+
+
+state 163
+
+    (37) paramcall -> expression . paramcall2
+    (39) paramcall2 -> . COMMA paramcall
+    (40) paramcall2 -> . empty
+    (103) empty -> .
+
+    COMMA           shift and go to state 172
+    R_PAREN         reduce using rule 103 (empty -> .)
+
+    paramcall2                     shift and go to state 171
+    empty                          shift and go to state 173
+
+state 164
+
+    (38) paramcall -> empty .
+    (98) negativefactor -> empty .
+
+    R_PAREN         reduce using rule 38 (paramcall -> empty .)
+    L_PAREN         reduce using rule 98 (negativefactor -> empty .)
+    ID              reduce using rule 98 (negativefactor -> empty .)
+    V_INT           reduce using rule 98 (negativefactor -> empty .)
+    V_DOUBLE        reduce using rule 98 (negativefactor -> empty .)
+    V_CHAR          reduce using rule 98 (negativefactor -> empty .)
+    V_BOOL          reduce using rule 98 (negativefactor -> empty .)
+
+
+state 165
+
+    (53) decid2 -> L_BRKT expression . R_BRKT decid3
+
+    R_BRKT          shift and go to state 174
+
+
+state 166
+
+    (35) decroutine -> ROUTINE dectype ID L_PAREN params R_PAREN L_CURLY vars block . R_CURLY
+
+    R_CURLY         shift and go to state 175
+
+
+state 167
+
+    (45) params2 -> COMMA type ID . params2
+    (45) params2 -> . COMMA type ID params2
+    (46) params2 -> . empty
+    (103) empty -> .
+
+    COMMA           shift and go to state 138
+    R_PAREN         reduce using rule 103 (empty -> .)
+
+    params2                        shift and go to state 176
+    empty                          shift and go to state 139
+
+state 168
+
+    (31) assignarray8 -> COMMA assignarray5 .
+
+    R_BRKT          reduce using rule 31 (assignarray8 -> COMMA assignarray5 .)
+
+
+state 169
+
+    (70) condition -> IF L_PAREN expression R_PAREN L_CURLY block . R_CURLY else
+
+    R_CURLY         shift and go to state 177
+
+
+state 170
+
+    (36) routinecall -> ID L_PAREN paramcall R_PAREN .
+
+    MULT            reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    DIV             reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    PLUS            reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    MINUS           reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    GREATER         reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    LESS            reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    EQUAL           reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    GREATEREQUAL    reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    LESSEQUAL       reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    NOTEQUAL        reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    AND             reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    OR              reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    SEMICOLON       reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    R_PAREN         reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    COMMA           reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+    R_BRKT          reduce using rule 36 (routinecall -> ID L_PAREN paramcall R_PAREN .)
+
+
+state 171
+
+    (37) paramcall -> expression paramcall2 .
+
+    R_PAREN         reduce using rule 37 (paramcall -> expression paramcall2 .)
+
+
+state 172
+
+    (39) paramcall2 -> COMMA . paramcall
+    (37) paramcall -> . expression paramcall2
+    (38) paramcall -> . empty
+    (76) expression -> . relational addlogic
+    (103) empty -> .
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+
+    R_PAREN         reduce using rule 103 (empty -> .)
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+    NOT             shift and go to state 92
+
+    paramcall                      shift and go to state 178
+    expression                     shift and go to state 163
+    empty                          shift and go to state 164
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+
+state 173
+
+    (40) paramcall2 -> empty .
+
+    R_PAREN         reduce using rule 40 (paramcall2 -> empty .)
+
+
+state 174
+
+    (53) decid2 -> L_BRKT expression R_BRKT . decid3
+    (55) decid3 -> . L_BRKT expression R_BRKT
+    (56) decid3 -> . empty
+    (103) empty -> .
+
+    L_BRKT          shift and go to state 179
+    MULT            reduce using rule 103 (empty -> .)
+    DIV             reduce using rule 103 (empty -> .)
+    PLUS            reduce using rule 103 (empty -> .)
+    MINUS           reduce using rule 103 (empty -> .)
+    GREATER         reduce using rule 103 (empty -> .)
+    LESS            reduce using rule 103 (empty -> .)
+    EQUAL           reduce using rule 103 (empty -> .)
+    GREATEREQUAL    reduce using rule 103 (empty -> .)
+    LESSEQUAL       reduce using rule 103 (empty -> .)
+    NOTEQUAL        reduce using rule 103 (empty -> .)
+    AND             reduce using rule 103 (empty -> .)
+    OR              reduce using rule 103 (empty -> .)
+    SEMICOLON       reduce using rule 103 (empty -> .)
+    R_PAREN         reduce using rule 103 (empty -> .)
+    COMMA           reduce using rule 103 (empty -> .)
+    R_BRKT          reduce using rule 103 (empty -> .)
+
+    decid3                         shift and go to state 180
+    empty                          shift and go to state 181
+
+state 175
+
+    (35) decroutine -> ROUTINE dectype ID L_PAREN params R_PAREN L_CURLY vars block R_CURLY .
+
+    ROUTINE         reduce using rule 35 (decroutine -> ROUTINE dectype ID L_PAREN params R_PAREN L_CURLY vars block R_CURLY .)
+    MAIN            reduce using rule 35 (decroutine -> ROUTINE dectype ID L_PAREN params R_PAREN L_CURLY vars block R_CURLY .)
+
+
+state 176
+
+    (45) params2 -> COMMA type ID params2 .
+
+    R_PAREN         reduce using rule 45 (params2 -> COMMA type ID params2 .)
+
+
+state 177
+
+    (70) condition -> IF L_PAREN expression R_PAREN L_CURLY block R_CURLY . else
+    (71) else -> . ELSE L_CURLY block R_CURLY
+    (72) else -> . empty
+    (103) empty -> .
+
+    ELSE            shift and go to state 183
+    R_CURLY         reduce using rule 103 (empty -> .)
+
+    else                           shift and go to state 182
+    empty                          shift and go to state 184
+
+state 178
+
+    (39) paramcall2 -> COMMA paramcall .
+
+    R_PAREN         reduce using rule 39 (paramcall2 -> COMMA paramcall .)
+
+
+state 179
+
+    (55) decid3 -> L_BRKT . expression R_BRKT
+    (76) expression -> . relational addlogic
+    (80) relational -> . mathsum addrelational
+    (88) mathsum -> . mathmult addmathsum
+    (92) mathmult -> . prefactor addmathmult
+    (96) prefactor -> . negativefactor factor
+    (97) negativefactor -> . NOT
+    (98) negativefactor -> . empty
+    (103) empty -> .
+
+    NOT             shift and go to state 92
+    L_PAREN         reduce using rule 103 (empty -> .)
+    ID              reduce using rule 103 (empty -> .)
+    V_INT           reduce using rule 103 (empty -> .)
+    V_DOUBLE        reduce using rule 103 (empty -> .)
+    V_CHAR          reduce using rule 103 (empty -> .)
+    V_BOOL          reduce using rule 103 (empty -> .)
+
+    expression                     shift and go to state 185
+    relational                     shift and go to state 87
+    mathsum                        shift and go to state 88
+    mathmult                       shift and go to state 89
+    prefactor                      shift and go to state 90
+    negativefactor                 shift and go to state 91
+    empty                          shift and go to state 93
+
+state 180
+
+    (53) decid2 -> L_BRKT expression R_BRKT decid3 .
+
+    MULT            reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    DIV             reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    PLUS            reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    MINUS           reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    GREATER         reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    LESS            reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    EQUAL           reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    GREATEREQUAL    reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    LESSEQUAL       reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    NOTEQUAL        reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    AND             reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    OR              reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    SEMICOLON       reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    R_PAREN         reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    COMMA           reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+    R_BRKT          reduce using rule 53 (decid2 -> L_BRKT expression R_BRKT decid3 .)
+
+
+state 181
+
+    (56) decid3 -> empty .
+
+    MULT            reduce using rule 56 (decid3 -> empty .)
+    DIV             reduce using rule 56 (decid3 -> empty .)
+    PLUS            reduce using rule 56 (decid3 -> empty .)
+    MINUS           reduce using rule 56 (decid3 -> empty .)
+    GREATER         reduce using rule 56 (decid3 -> empty .)
+    LESS            reduce using rule 56 (decid3 -> empty .)
+    EQUAL           reduce using rule 56 (decid3 -> empty .)
+    GREATEREQUAL    reduce using rule 56 (decid3 -> empty .)
+    LESSEQUAL       reduce using rule 56 (decid3 -> empty .)
+    NOTEQUAL        reduce using rule 56 (decid3 -> empty .)
+    AND             reduce using rule 56 (decid3 -> empty .)
+    OR              reduce using rule 56 (decid3 -> empty .)
+    SEMICOLON       reduce using rule 56 (decid3 -> empty .)
+    R_PAREN         reduce using rule 56 (decid3 -> empty .)
+    COMMA           reduce using rule 56 (decid3 -> empty .)
+    R_BRKT          reduce using rule 56 (decid3 -> empty .)
+
+
+state 182
+
+    (70) condition -> IF L_PAREN expression R_PAREN L_CURLY block R_CURLY else .
+
+    R_CURLY         reduce using rule 70 (condition -> IF L_PAREN expression R_PAREN L_CURLY block R_CURLY else .)
+
+
+state 183
+
+    (71) else -> ELSE . L_CURLY block R_CURLY
+
+    L_CURLY         shift and go to state 186
+
+
+state 184
+
+    (72) else -> empty .
+
+    R_CURLY         reduce using rule 72 (else -> empty .)
+
+
+state 185
+
+    (55) decid3 -> L_BRKT expression . R_BRKT
+
+    R_BRKT          shift and go to state 187
+
+
+state 186
+
+    (71) else -> ELSE L_CURLY . block R_CURLY
+    (62) block -> . loop
+    (63) block -> . condition
+    (64) block -> . assignvalue SEMICOLON
+    (65) block -> . input SEMICOLON
+    (66) block -> . output SEMICOLON
+    (67) block -> . return SEMICOLON
+    (68) block -> . empty
+    (69) loop -> . LOOP L_PAREN expression R_PAREN
+    (70) condition -> . IF L_PAREN expression R_PAREN L_CURLY block R_CURLY else
+    (15) assignvalue -> . constant
+    (16) assignvalue -> . assignarray
+    (17) assignvalue -> . empty
+    (73) input -> . INPUT L_PAREN expression R_PAREN
+    (74) output -> . OUTPUT L_PAREN expression R_PAREN
+    (75) return -> . RETURN expression
+    (103) empty -> .
+    (48) constant -> . V_INT
+    (49) constant -> . V_DOUBLE
+    (50) constant -> . V_CHAR
+    (51) constant -> . V_BOOL
+    (18) assignarray -> . L_BRKT assignarray2 R_BRKT
+    (19) assignarray -> . empty
+
+    LOOP            shift and go to state 59
+    IF              shift and go to state 60
+    INPUT           shift and go to state 61
+    OUTPUT          shift and go to state 62
+    RETURN          shift and go to state 63
+    R_CURLY         reduce using rule 103 (empty -> .)
+    SEMICOLON       reduce using rule 103 (empty -> .)
+    V_INT           shift and go to state 45
+    V_DOUBLE        shift and go to state 46
+    V_CHAR          shift and go to state 47
+    V_BOOL          shift and go to state 48
+    L_BRKT          shift and go to state 49
+
+    block                          shift and go to state 188
+    loop                           shift and go to state 52
+    condition                      shift and go to state 53
+    assignvalue                    shift and go to state 54
+    input                          shift and go to state 55
+    output                         shift and go to state 56
+    return                         shift and go to state 57
+    empty                          shift and go to state 58
+    constant                       shift and go to state 42
+    assignarray                    shift and go to state 43
+
+state 187
+
+    (55) decid3 -> L_BRKT expression R_BRKT .
+
+    MULT            reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    DIV             reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    PLUS            reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    MINUS           reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    GREATER         reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    LESS            reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    EQUAL           reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    GREATEREQUAL    reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    LESSEQUAL       reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    NOTEQUAL        reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    AND             reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    OR              reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    SEMICOLON       reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    R_PAREN         reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    COMMA           reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+    R_BRKT          reduce using rule 55 (decid3 -> L_BRKT expression R_BRKT .)
+
+
+state 188
+
+    (71) else -> ELSE L_CURLY block . R_CURLY
+
+    R_CURLY         shift and go to state 189
+
+
+state 189
+
+    (71) else -> ELSE L_CURLY block R_CURLY .
+
+    R_CURLY         reduce using rule 71 (else -> ELSE L_CURLY block R_CURLY .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: reduce/reduce conflict in state 44 resolved using rule (assignvalue -> empty)
+WARNING: rejected rule (assignarray -> empty) in state 44
+WARNING: reduce/reduce conflict in state 58 resolved using rule (assignvalue -> empty)
+WARNING: rejected rule (assignarray -> empty) in state 58
+WARNING: reduce/reduce conflict in state 99 resolved using rule (assignarray6 -> empty)
+WARNING: rejected rule (assignarray7 -> empty) in state 99
+WARNING: Rule (assignarray -> empty) is never reduced
+WARNING: Rule (assignarray7 -> empty) is never reduced

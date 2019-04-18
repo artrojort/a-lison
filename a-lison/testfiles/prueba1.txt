@@ -1,0 +1,8 @@
+startprog
+
+vars
+int a=1;
+double b=2;
+rod = a;
+
+endprog
